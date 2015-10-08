@@ -31,13 +31,13 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-      log_in @user
   		message = "Welcome to sample app! "
-      message += ">>> tannm13-demo-app.herokuapp.com/account_activations/"
+      message += "<a href='http://tannm13-demo-app.herokuapp.com/account_activations/"
       message += @user.activation_token
       message += "/edit?email="
       message += @user.email.gsub(/@/,'%40')
-      flash[:success] = message
+      message += "'>Click to activate</a>"
+      flash[:success] = message.html_safe
   		redirect_to @user
   	else
   		render 'new'
