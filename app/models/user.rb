@@ -63,6 +63,10 @@ class User < ActiveRecord::Base
       update_attribute(:reset_sent_at, Time.zone.now)
     end
 
+    def send_activation_email
+      UserMailer.account_activation(self).deliver_now
+    end
+
     def send_password_reset_email
       
     end
