@@ -32,7 +32,12 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
       log_in @user
-  		flash[:success] = "Welcome to sample app!"+@user.activation_token
+  		message = "Welcome to sample app! "
+      message += ">>> tannm13-demo-app.herokuapp.com/account_activations/"
+      message += @user.activation_token
+      message += "/edit?email="
+      message += @user.email.gsub(/@/,'%40')
+      flash[:success] = message
   		redirect_to @user
   	else
   		render 'new'
