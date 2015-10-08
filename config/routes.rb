@@ -1,5 +1,6 @@
 SampleApp::Application.routes.draw do
   
+  resources :entries
   get "password_resets/new"
   get "password_resets/edit"
   get "sessions/new"
@@ -20,6 +21,7 @@ SampleApp::Application.routes.draw do
   resources :password_resets, only: [:new,:update,:edit,:create]
   resources :microposts, only: [:create,:destroy]
   resources :relationships, only: [:create,:destroy]
+  resources :comments, only: [:create,:destroy]
 
 
 

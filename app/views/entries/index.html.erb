@@ -1,0 +1,11 @@
+<%= provide(:title, "Entries") %>
+
+<div class="row">
+
+  <h1>Entries</h1>
+  <ol class='microposts'>
+    <%= render @entries %>
+  </ol>
+  <%= will_paginate @entries %>
+
+</div>

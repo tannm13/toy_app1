@@ -10,9 +10,12 @@
       <section class="micropost_form">
         <%= render 'shared/micropost_form' %>
       </section>
+      <section>
+        <%= link_to "New Entry", new_entry_path, class: "btn btn-lg btn-primary" %>
+      </section>  
     </aside>
     <div class="col-md-8">
-      <h3>Micropost Feed</h3>
+      <h3>News Feed</h3>
       <%= render 'shared/feed' %>
     </div>
   </div>

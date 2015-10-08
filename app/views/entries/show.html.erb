@@ -1,0 +1,46 @@
+<%= provide(:title, @entry.title) %>
+
+<div>
+	<div>
+	  <h1><%= @entry.title %><h1>
+	</div>
+
+	<div>
+	  <p><%= @entry.content %></p>
+	</div>
+
+	<div>
+	  User:
+	  <strong><%= @entry.user.name %></strong>
+	</div>
+
+	<div>
+	  Created at:
+	  <strong><%= @entry.created_at %></strong>
+	</div>
+
+	<% if logged_in?  %>
+
+		<% if current_user?(@entry.user) %>
+			<div>
+				<%= link_to 'Edit', edit_entry_path(@entry), class: 'btn btn-primary' %> |
+				<%= link_to 'Delete', @entry, method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-primary' %> 
+			</div>
+		<% end %>
+
+		<section>
+			<%= render 'shared/comment_form' %>
+		</section>
+
+	<% end %>
+
+	<section>
+		<% if @entry.comments.any? %>
+  			<h3>Comments (<%= @entry.comments.count %>)</h3>
+  			<ol class='microposts'>
+  				<%= render @comments %>
+  			</ol>
+  			<%= will_paginate @comments %>
+			<% end %>
+	</section>
+</div>

@@ -1,0 +1,15 @@
+<%= form_for(@entry, html: {multipart: true}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content, placeholder: "Compose new entry...", rows: '20' %>
+  </div>
+  <div>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
