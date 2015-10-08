@@ -32,10 +32,14 @@ users = User.order(:created_at).take(6)
   content = Faker::Lorem.sentence(5)
   users.each { |user| user.microposts.create!(content: content) }
 end
-30.times do
-  title = Faker::Lorem.sentence(1)
-  content = Faker::Lorem.sentence(20)
+10.times do
+  title = Faker::Lorem.sentence(6)
+  content = Faker::Lorem.sentences(10)
   users.each { |user| user.entries.create!(title: title, content: content) }
+end
+5.times do
+  content = Faker::Lorem.sentences(3)
+  users.each { |user| user.comments.create!(content: content, entry_id: "1") }
 end
 
 users = User.all

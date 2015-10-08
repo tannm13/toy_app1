@@ -26,11 +26,16 @@
 				<%= link_to 'Edit', edit_entry_path(@entry), class: 'btn btn-primary' %> |
 				<%= link_to 'Delete', @entry, method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-primary' %> 
 			</div>
-		<% end %>
-
-		<section>
+			<section>
 			<%= render 'shared/comment_form' %>
-		</section>
+			</section>
+
+		<% end %>
+		<% if following_user?(@entry.user) %>
+			<section>
+			<%= render 'shared/comment_form' %>
+			</section>
+		<% end %>
 
 	<% end %>
 
