@@ -1,0 +1,4 @@
+$('<%= escape_javascript(render(@comment))%>').prependTo('#cm_all');
+$("#new_comment")[0].reset();
+var count = parseInt($("#cm_count").html())
+$("#cm_count").html(count+1);

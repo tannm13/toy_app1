@@ -6,7 +6,11 @@ class MicropostsController < ApplicationController
 		@micropost = current_user.microposts.build(micropost_params)
 		if @micropost.save
 			flash[:success] = "Micropost created!"
-			redirect_to root_url
+			respond_to do |format|
+      			format.html { redirect_to root_url }
+      			format.js
+    		end
+			#redirect_to root_url
 		else
 			@feed_items = []
 			render 'static_pages/home'
@@ -16,7 +20,11 @@ class MicropostsController < ApplicationController
 	def destroy
 		@micropost.destroy
 		flash[:success] = "Micropost deleted!"
-		redirect_to request.referrer || root_url
+		respond_to do |format|
+      			format.html { redirect_to request.referrer || root_url }
+      			format.js
+    	end
+		#redirect_to request.referrer || root_url
 	end
 
 	private 

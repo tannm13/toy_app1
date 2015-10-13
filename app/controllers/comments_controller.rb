@@ -6,8 +6,13 @@ class CommentsController < ApplicationController
 		@comment = current_user.comments.build(comment_params)
 		@comment.entry = Entry.find(params[:entry_id])
 		if @comment.save
-			flash[:success] = "Comment posted!"
-			redirect_to @comment.entry
+			#flash[:success] = "Comment posted!"
+			respond_to do |format|
+      			format.html { redirect_to @comment.entry }
+      			format.js
+    		end
+			
+			#redirect_to @comment.entry
 		else
 			redirect_to @comment.entry
 		end
@@ -15,8 +20,12 @@ class CommentsController < ApplicationController
 
 	def destroy
 		@comment.destroy
-		flash[:success] = "Comment deleted!"
-		redirect_to @comment.entry
+		#flash[:success] = "Comment deleted!"
+		#redirect_to @comment.entry
+		respond_to do |format|
+      			format.html { redirect_to @comment.entry }
+      			format.js
+    	end
 	end
 
 	private 

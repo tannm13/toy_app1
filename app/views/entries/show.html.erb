@@ -41,11 +41,17 @@
 
 	<section>
 		<% if @entry.comments.any? %>
-  			<h3>Comments (<%= @entry.comments.count %>)</h3>
-  			<ol class='microposts'>
+  			<h3>Comments (<span id='cm_count'><%= @entry.comments.count %></span>)</h3>
+  			<ol class='microposts' id='cm_all'>
   				<%= render @comments %>
   			</ol>
   			<%= will_paginate @comments %>
-			<% end %>
+  			</div>
+  		<% else %>
+  			<h3>Comments (<span id='cm_count'>0</span>)</h3>
+  			<ol class='microposts' id='cm_all'>
+  			</ol>
+  			</div>
+		<% end %>
 	</section>
 </div>
