@@ -4,6 +4,13 @@
   <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <% controller_with_assets = %w(users users-test1 users-test2) %>
+  <% controller = params[:controller] %>
+  <% controller_with_assets.each do |c| %>
+    <% if c.include? controller %>
+      <%= javascript_include_tag c %>
+    <% end %>
+  <% end %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>

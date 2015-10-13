@@ -1,24 +1,24 @@
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-md-4">
-      <section class="user_info">
-        <%= render 'shared/user_info' %>
-      </section>
-      <section class="stats">
-        <%= render 'shared/stat' %>
-      </section>
-      <section class="micropost_form">
-        <%= render 'shared/micropost_form' %>
-      </section>
-      <section>
-        <%= link_to "New Entry", new_entry_path, class: "btn btn-lg btn-primary" %>
-      </section>  
-    </aside>
-    <div class="col-md-8">
-      <h3>News Feed</h3>
-      <div id='newsfeed'><%= render 'shared/feed' %></div>
-    </div>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= render 'shared/user_info' %>
+    </section>
+    <section class="stats">
+      <%= render 'shared/stat' %>
+    </section>
+    <section class="micropost_form">
+      <%= render 'shared/micropost_form' %>
+    </section>
+    <section>
+      <%= link_to "New Entry", new_entry_path, class: "btn btn-lg btn-primary" %>
+    </section>  
+  </aside>
+  <div class="col-md-8">
+    <h3>News Feed</h3>
+    <div id='newsfeed'><%= render 'shared/feed' %></div>
   </div>
+</div>
 <% else %>
 <div class="center jumbotron">
   <h1>Welcome to the Sample App</h1>
@@ -33,5 +33,5 @@
 </div>
 
 <%= link_to image_tag("rails.png", alt: "Rails logo"),
-            'http://rubyonrails.org/' %>
+'http://rubyonrails.org/' %>
 <% end %>

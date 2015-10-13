@@ -7,9 +7,9 @@ class MicropostsController < ApplicationController
 		if @micropost.save
 			flash[:success] = "Micropost created!"
 			respond_to do |format|
-      			format.html { redirect_to root_url }
-      			format.js
-    		end
+				format.html { redirect_to root_url }
+				format.js
+			end
 			#redirect_to root_url
 		else
 			@feed_items = []
@@ -21,19 +21,19 @@ class MicropostsController < ApplicationController
 		@micropost.destroy
 		flash[:success] = "Micropost deleted!"
 		respond_to do |format|
-      			format.html { redirect_to request.referrer || root_url }
-      			format.js
-    	end
+			format.html { redirect_to request.referrer || root_url }
+			format.js
+		end
 		#redirect_to request.referrer || root_url
 	end
 
 	private 
-		def micropost_params
-			params.require(:micropost).permit(:content, :picture)
-		end
+	def micropost_params
+		params.require(:micropost).permit(:content, :picture)
+	end
 
-		def correct_user
-			@micropost = current_user.microposts.find_by(id: params[:id])
-			redirect_to root_url if @micropost.nil?
-		end
+	def correct_user
+		@micropost = current_user.microposts.find_by(id: params[:id])
+		redirect_to root_url if @micropost.nil?
+	end
 end

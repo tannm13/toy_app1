@@ -8,9 +8,9 @@ class CommentsController < ApplicationController
 		if @comment.save
 			#flash[:success] = "Comment posted!"
 			respond_to do |format|
-      			format.html { redirect_to @comment.entry }
-      			format.js
-    		end
+				format.html { redirect_to @comment.entry }
+				format.js
+			end
 			
 			#redirect_to @comment.entry
 		else
@@ -23,18 +23,18 @@ class CommentsController < ApplicationController
 		#flash[:success] = "Comment deleted!"
 		#redirect_to @comment.entry
 		respond_to do |format|
-      			format.html { redirect_to @comment.entry }
-      			format.js
-    	end
+			format.html { redirect_to @comment.entry }
+			format.js
+		end
 	end
 
 	private 
-		def comment_params
-			params.require(:comment).permit(:content)
-		end
+	def comment_params
+		params.require(:comment).permit(:content)
+	end
 
-		def correct_user
-			@comment = current_user.comments.find_by(id: params[:id])
-			redirect_to root_url if @comment.nil?
-		end
+	def correct_user
+		@comment = current_user.comments.find_by(id: params[:id])
+		redirect_to root_url if @comment.nil?
+	end
 end

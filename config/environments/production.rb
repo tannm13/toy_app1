@@ -81,11 +81,11 @@ SampleApp::Application.configure do
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = 'tannm13-demo-app.herokuapp.com'
+  host = 'fts-45.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
-    address:         'ssl://smtp.gmail.com',
-    port:            '465',
+    address:         'smtp.gmail.com',
+    port:            '587',
     authentication:  :plain,
     enable_starttls_auto: true,
     user_name:       ENV['GMAIL_USERNAME'],

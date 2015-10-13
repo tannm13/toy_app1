@@ -2,56 +2,56 @@
 
 <div>
 	<div>
-	  <h1><%= @entry.title %><h1>
-	</div>
+		<h1><%= @entry.title %><h1>
+		</div>
 
-	<div>
-	  <p><%= @entry.content %></p>
-	</div>
+		<div>
+			<p><%= @entry.content %></p>
+		</div>
 
-	<div>
-	  User:
-	  <strong><%= link_to @entry.user.name, @entry.user %></strong>
-	</div>
+		<div>
+			User:
+			<strong><%= link_to @entry.user.name, @entry.user %></strong>
+		</div>
 
-	<div>
-	  Created at:
-	  <strong><%= @entry.created_at %></strong>
-	</div>
+		<div>
+			Created at:
+			<strong><%= @entry.created_at %></strong>
+		</div>
 
-	<% if logged_in?  %>
+		<% if logged_in?  %>
 
 		<% if current_user?(@entry.user) %>
-			<div>
-				<%= link_to 'Edit', edit_entry_path(@entry), class: 'btn btn-primary' %> |
-				<%= link_to 'Delete', @entry, method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-primary' %> 
-			</div>
-			<section>
+		<div>
+			<%= link_to 'Edit', edit_entry_path(@entry), class: 'btn btn-primary' %> |
+			<%= link_to 'Delete', @entry, method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-primary' %> 
+		</div>
+		<section>
 			<%= render 'shared/comment_form' %>
-			</section>
+		</section>
 
 		<% end %>
 		<% if following_user?(@entry.user) %>
-			<section>
+		<section>
 			<%= render 'shared/comment_form' %>
-			</section>
+		</section>
 		<% end %>
 
+		<% end %>
+
+		<section>
+			<% if @entry.comments.any? %>
+			<h3>Comments (<span id='cm_count'><%= @entry.comments.count %></span>)</h3>
+			<ol class='microposts' id='cm_all'>
+				<%= render @comments %>
+			</ol>
+			<%= will_paginate @comments %>
+		</div>
+		<% else %>
+		<h3>Comments (<span id='cm_count'>0</span>)</h3>
+		<ol class='microposts' id='cm_all'>
+		</ol>
+	</div>
 	<% end %>
-
-	<section>
-		<% if @entry.comments.any? %>
-  			<h3>Comments (<span id='cm_count'><%= @entry.comments.count %></span>)</h3>
-  			<ol class='microposts' id='cm_all'>
-  				<%= render @comments %>
-  			</ol>
-  			<%= will_paginate @comments %>
-  			</div>
-  		<% else %>
-  			<h3>Comments (<span id='cm_count'>0</span>)</h3>
-  			<ol class='microposts' id='cm_all'>
-  			</ol>
-  			</div>
-		<% end %>
-	</section>
+</section>
 </div>
